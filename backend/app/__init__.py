@@ -4,13 +4,17 @@ from app.settings import middleware
 app = falcon.API(middleware=middleware)
 
 db = mongo.connect(
-    'development',
+    'LetsHang',
     host= 'localhost',
     port= 27017,
-    username= 'root',
-    password= 'password'
+    username= 'admin',
+    password= 'pass',
+    authentication_source='admin'
 )
 
+print(db)
+
 from app.resources.users import *
-#app.add_route('/notes', RegisterUsers)
-app.add_route('/notes', GetUsers())
+app.add_route('/register', Register())
+
+#db.createUser({ user:"admin", pwd: "pass", roles: [{role: "userAdminAnyDatabase", db: "admin"}] })

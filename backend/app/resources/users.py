@@ -1,28 +1,28 @@
 import falcon
+import json
 #from app.controllers.notes import NotesController
 from app import db
 from app.models.users_model import UserModel
+from mongoengine import NotUniqueError 
 
-class GetUsers(object):
-    def on_get(self, req, resp):
-        resp.status = falcon.HTTP_200
-        resp.json = {
-            'notes': 'GETUSERS'
-        }
-
-'''        
-class RegisterUsers(object):
+class Register(object):
+        
     def on_post(self, req, resp):
-        title = resp.get_json('title', dtype=str)
-        body = resp.get_json('body', dtype=str)
-        notes_obj = NoteModel(
-            title=title, body=body
-        )
-        notes_obj.save()
-        resp.status = falcon.HTTP_201
+        username = req.get_json('username')
+        password = req.get_json('password')
+        email = req.get_json('email')
+
+        userObj = UserModel(username=username, password=password, email=email)
+        
+        try:
+            userObj.save()
+        except NotUniqueError:
+            resp.json = {
+                "status": "fail",
+                "reason": "Username or Email already exist"
+            }
+
         resp.json = {
-            'message': 'Your Note Has Been Posted!',
-            'status': 200,
-            'successful': True
+            "status": "successful",
         }
-'''
+        

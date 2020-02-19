@@ -6,6 +6,7 @@ dbcfg = {
     'username': os.environ.get('MONGO_USER'),
     'password': os.environ.get('MONGO_PASS'),
 }
+
 middleware = [
     falcon_jsonify.Middleware(help_messages=True),
 ]
