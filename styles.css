@@ -1,0 +1,12 @@
+.fullpage{
+    height: 100vh;
+    background-image: url(./assets/imgMain.jpg);
+    background-size: cover;
+}
+
+.main{
+    text-align: center;
+    position: relative;
+    top: 33vh;
+    height: 33vh;
+}
