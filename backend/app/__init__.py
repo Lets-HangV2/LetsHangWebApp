@@ -1,7 +1,28 @@
 import falcon
 import mongoengine as mongo
 from app.settings import middleware
-app = falcon.API(middleware=middleware)
+
+class AuthMiddleware(object):
+
+    def process_request(self, req, resp):
+        
+        avaliablePaths = ['/', '/login', '/register', '/getUsers']
+    
+        if req.path not in avaliablePaths:
+            token = req.get_header('authorization')
+
+            if token is None:
+                description = ('Please provide an auth token as part of the request.')
+                raise falcon.HTTPUnauthorized('Auth token required')
+            else:
+                try:
+                    payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+                    req.user = payload['user'] 
+                except (jwt.DecodeError, jwt.ExpiredSignatureError):
+                    raise falcon.HTTPUnauthorized('Invalid Token')
+
+
+app = falcon.API(middleware=[AuthMiddleware(), Testing()])
 
 db = mongo.connect(
     'LetsHang',
@@ -12,9 +33,10 @@ db = mongo.connect(
     authentication_source='admin'
 )
 
-print(db)
-
 from app.resources.users import *
 app.add_route('/register', Register())
+app.add_route('/getUsers', ListUsers())
+app.add_route('/login', Login())
+app.add_route('/home', Home())
 
 #db.createUser({ user:"admin", pwd: "pass", roles: [{role: "userAdminAnyDatabase", db: "admin"}] })
