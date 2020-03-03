@@ -1,8 +1,8 @@
 import React from 'react';
 import { TextInput } from 'react-native-paper';
 
-const FormTextBox = () =>(
-    <TextInput mode="outlined" value="String" label="String" />
+const FormTextBox = ({value}, {label}) =>(
+    <TextInput mode="outlined" value={value} label={label} />
 );
 
 export default FormTextBox
