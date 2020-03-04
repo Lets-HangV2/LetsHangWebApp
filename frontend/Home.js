@@ -17,9 +17,9 @@ class Home extends React.Component{
                     <Row className="main">
                         <Col md={{ span: 4, offset: 4 }}>
                             <Title>Welcome, Login!</Title>
-                            <FormTextBox dataSent={"Username"}/>
-                            <FormTextBox />
-                            <SubmitButton />
+                            <FormTextBox value={""} label={"Username"} />
+                            <FormTextBox value={""} label={"Password"} />
+                            <SubmitButton label={"login"} func={"login"} />
                             <Text>{"Don't have an account?"}</Text>
                             <a href="">Create an account</a>
                         </Col>

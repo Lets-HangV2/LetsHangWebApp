@@ -1,14 +1,16 @@
 import React from 'react';
 import { Button } from 'react-native-paper';
 
+const SubmitButton = ({label}, {func}) =>(
+    <Button mode="contained" onPress={func} >{label}</Button>
+);
+
+function login(){
+    alert("Did it");
+}
+
 function changePage(){
     alert('Worked');
 }
-
-const SubmitButton = () =>(
-    <Button mode="contained" onPress={changePage}>Submit</Button>
-);
-
-
 
 export default SubmitButton
