@@ -6,7 +6,7 @@ class AuthMiddleware(object):
 
     def process_request(self, req, resp):
         
-        avaliablePaths = ['/', '/login', '/register', '/getUsers']
+        avaliablePaths = ['/', '/login', '/register', '/getUsers', '/searchUsers']
     
         if req.path not in avaliablePaths:
             token = req.get_header('authorization')
@@ -22,7 +22,8 @@ class AuthMiddleware(object):
                     raise falcon.HTTPUnauthorized('Invalid Token')
 
 
-app = falcon.API(middleware=[AuthMiddleware(), Testing()])
+
+app = falcon.API(middleware=[AuthMiddleware()])
 
 db = mongo.connect(
     'LetsHang',
@@ -38,5 +39,6 @@ app.add_route('/register', Register())
 app.add_route('/getUsers', ListUsers())
 app.add_route('/login', Login())
 app.add_route('/home', Home())
+app.add_route('/searchUsers', SearchUser())
 
 #db.createUser({ user:"admin", pwd: "pass", roles: [{role: "userAdminAnyDatabase", db: "admin"}] })

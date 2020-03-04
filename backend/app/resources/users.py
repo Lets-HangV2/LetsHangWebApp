@@ -14,12 +14,14 @@ class Register(object):
         username = req.media['username']
         password = req.media['password']
         email = req.media['email']
+        fName = req.media['firstName']
+        lName = req.media['lastName']
 
         hashedPassword = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        userObj = UserModel(username=username, password=hashedPassword, email=email)
+        userObj = UserModel(username=username, password=hashedPassword, email=email, first_name=fName, last_name=lName)
         
         hasError = False
-        error = ""
+        error = ''
 
         try:
             userObj.save()
@@ -28,39 +30,20 @@ class Register(object):
         except (NotUniqueError) as err:
             hasError = True
             if email in err.message:
-                error = "Email already exists"
+                error = 'Email already exists'
             if username in err.message:
-                error = "Username already exists"
+                error = 'Username already exists'
 
         if hasError:
             resp.media = {
-                "status": "fail",
-                "error": error
+                'status': 'fail',
+                'error': error
             }
         else:
             resp.media = {
-                "status": "successful"
+                'status': 'successful'
             }
         
-        
-
-class ListUsers(object):
-
-    def on_get(self, req, resp):
-        
-        users = {"users": []}
-        
-        for user in UserModel.objects:
-            user = {
-                "username": user.username,
-                "password": user.password,
-                "email": user.email
-            }
-            users["users"].append(user)
-
-        resp.media = users
-        
-
 class Login(object):
 
     def on_post(self, req, resp):
@@ -73,19 +56,59 @@ class Login(object):
         if len(user) > 0:
             user = user[0]
             if bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
-                response["user"] = str(user.id)
-                response["exp"] = datetime.utcnow() + timedelta(seconds=1800)
+                response['user'] = str(user.id)
+                response['exp'] = datetime.utcnow() + timedelta(seconds=1800)
 
                 jwt_token = jwt.encode(response, 'secret','HS256')
                 resp.media = {'token': jwt_token.decode('utf-8')}
 
             else:
-                response["message"] = "Wrong Passowrd"   
+                response['message'] = 'Wrong Passowrd'   
                 resp.media = response
         else:
-            response["message"] = "Wrong Username"  
+            response['message'] = 'Wrong Username'  
             resp.media = response
         
+class ListUsers(object):
+
+    def on_get(self, req, resp):
+        
+        users = {'users': []}
+        
+        for user in UserModel.objects:
+            user = {
+                'first_name': user.first_name,
+                'last_name': user.last_name,
+                'username': user.username,
+                'password': user.password,
+                'email': user.email
+            }
+            users['users'].append(user)
+
+        resp.media = users
+
+class SearchUser(object):
+    
+    def on_get(self, req, resp):
+        
+        fName = req.media['firstName']
+        lName = req.media['lastName']
+        potentialUsers = {'potentialUsers': []}
+
+        i = 0
+
+        for user in UserModel.objects:
+            if fName == user['first_name'] and lName == user['last_name']:
+                user = {
+                    'first_name': user.first_name,
+                    'last_name': user.last_name,
+                    'username': user.username
+                }
+                potentialUsers['potentialUsers'].append(user)
+
+        resp.media = potentialUsers 
+
+
 
 class Home(object):
     def on_get(self, req, resp):
