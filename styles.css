@@ -10,3 +10,7 @@
     top: 33vh;
     height: 33vh;
 }
+
+.errorMsg{
+    color: red;
+}
