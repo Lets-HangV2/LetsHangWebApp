@@ -14,7 +14,8 @@ class Home extends React.Component{
         usernameErrCode: false,
         passwordErrCode: false,
         filledOutErr: false,
-        noMatchErr: false
+        noMatchErr: false,
+        display: this.props.value
     };
 
     render() {
@@ -60,7 +61,7 @@ class Home extends React.Component{
         //Attempt Login
         //If user doesn't exist -> noMatchErr = true;
         //If user does exist -> send them to personal profile page
-        
+
     }
 
 }

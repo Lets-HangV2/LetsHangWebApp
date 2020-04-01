@@ -87,7 +87,7 @@ class Register extends React.Component{
         if(!isFilledOut){
             return;
         }
-        alert('Everything is filled out :)');
+        console.log('All fields are filled out :)');
 
         ///////// CHECK IF VALID /////////
         this.setState({passwordLength: true});
@@ -111,17 +111,16 @@ class Register extends React.Component{
         }
 
         if(!isValid){
-            alert('NOT VALID');
+            console.log('Invalid Entry');
             return;
         }
-        alert('Everything\'s Good');
+        console.log('Everything\'s Valid');
         
         //ping file that handles registration
         let xhr = new XMLHttpRequest();
         let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/register';
 
         xhr.open('POST', url);
-
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         var data = JSON.stringify({
@@ -131,9 +130,11 @@ class Register extends React.Component{
             'first_name': this.state.firstName,
             'last_name': this.state.lastName
         });
-
+        console.log('Sending data');
         xhr.send(data);
-
+        //Check if successful
+        //True -> Profile page
+        //False -> display error
     }
 
 }

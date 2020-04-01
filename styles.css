@@ -14,3 +14,12 @@
 .errorMsg{
     color: red;
 }
+
+.navbar{
+    background-color: yellow;
+    height: 75px;
+}
+
+.userTag{
+    display: inline-block;
+}

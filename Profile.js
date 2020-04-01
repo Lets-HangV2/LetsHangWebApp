@@ -5,19 +5,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProfileCard from './ProfileCard.js';
 import TravelPost from './TravelPost.js';
+import NavBar from './NavBar.js';
 
 class Profile extends React.Component{
 
     state = {
-        arr: [<TravelPost />, <TravelPost />, <TravelPost />]
+        travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />],
+        username: 'NO USERNAME FOUND'
     }
 
     render() {
         return(
             <Container>
-                <Row className="tempNavbar">
-                    <h1>NAVBAR</h1>
-                </Row>
+                <NavBar />
                 <Row className="colorBuffer" />
                 <Row>
                     <Col>
@@ -25,10 +25,10 @@ class Profile extends React.Component{
                     </Col>
                     <Col>
                         <Row>
-                            <h1>Username</h1>
+                            <h1>{this.state.username}</h1>
                         </Row>
                         <Row>
-                            <Button mode="text">Friends</Button>
+                            <Button mode="text" onClick="">Friends</Button>
                         </Row>
                     </Col>
                 </Row>
@@ -38,12 +38,17 @@ class Profile extends React.Component{
         );
     }
 
-    renderTravelPosts(){
-        if(this.state.arr.length === 0){
+    renderTravelPosts =()=>{
+        console.log('rendering travel posts...');
+        if(this.state.travelPostArr.length === 0){
             return <p>No travel posts yet :(</p>
         } else {
-            return this.state.arr.map(arr => <Row><Col>{ arr }</Col></Row>)
+            return this.state.travelPostArr.map(TravelPostArr => <Row><Col>{ TravelPostArr }</Col></Row>)
         }
+    }
+
+    openFriendsList =()=>{
+        console.log('opening friends list...');
     }
 
 }
