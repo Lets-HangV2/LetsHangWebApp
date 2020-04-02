@@ -58,6 +58,28 @@ class Home extends React.Component{
             return;
         }
 
+        let xhr = new XMLHttpRequest();
+        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/login';
+
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        let data = JSON.stringify({
+            'username': this.state.username,
+            'password': this.state.password
+        });
+
+        console.log('sending data');
+        xhr.send(data);
+
+        xhr.onreadystatechange = processRequest;
+
+        function processRequest(e){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                let response = JSON.parse(xhr.responseText);
+                alert(xhr.responseText);s
+            }
+        }
         //Attempt Login
         //If user doesn't exist -> noMatchErr = true;
         //If user does exist -> send them to personal profile page

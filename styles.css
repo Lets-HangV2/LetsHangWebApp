@@ -23,3 +23,12 @@
 .userTag{
     display: inline-block;
 }
+
+.normal-row{
+    padding-top: 24px;
+}
+
+.hr{
+    border-color: black;
+    border-width: 2px;
+}

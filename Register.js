@@ -130,13 +130,20 @@ class Register extends React.Component{
             'first_name': this.state.firstName,
             'last_name': this.state.lastName
         });
+        
         console.log('Sending data');
         xhr.send(data);
-        //Check if successful
-        //True -> Profile page
-        //False -> display error
-    }
 
+        xhr.onreadystatechange = processRequest;
+
+        function processRequest(e){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var response = JSON.parse(xhr.responseText);
+                console.log(response.status);
+                //display profile page
+            }
+        };
+    }
 }
 
 export default Register;
