@@ -1,11 +1,10 @@
 import React from 'react';
-import { Title, Text, Avatar, Button } from 'react-native-paper';
+import { Title, Avatar, Button} from 'react-native-paper';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import ProfileCard from './ProfileCard.js';
 import TravelPost from './TravelPost.js';
-import CustomNavbar from './CustomNavbar.js';
+import CustomAppbar from './CustomAppbar.js';
 
 class Profile extends React.Component{
 
@@ -17,8 +16,7 @@ class Profile extends React.Component{
     render() {
         return(
             <Container>
-                <CustomNavbar />
-                <Container>
+                <CustomAppbar />
                     <Row className="normal-row">
                         <Col>
                             <Avatar.Image size={128} />
@@ -36,7 +34,6 @@ class Profile extends React.Component{
                         </Col>
                     </Row>
                     <hr className="hr" />
-                </Container>
                 { this.renderTravelPosts() }
             </Container>
         );

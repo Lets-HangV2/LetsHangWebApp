@@ -13,14 +13,16 @@ class TravelPost extends React.Component{
 
     render(){
         return(
-            <Card>
-                <Card.Title title={this.state.tripTitle} subtitle={this.state.tripDesc} />
-                <Card.Cover source={{uri: this.state.picURL}} />
-                <Card.Actions>
-                    <Button mode="text" onPress={this.confirm}>Confirm</Button>
-                    <Button mode="text" onPress={this.decline}>Decline</Button>
-                </Card.Actions>
-            </Card>
+            <div className="travel-post">
+                <Card>
+                    <Card.Title title={this.state.tripTitle} subtitle={this.state.tripDesc} />
+                    <Card.Cover source={{uri: this.state.picURL}} />
+                    <Card.Actions>
+                        <Button mode="text" onPress={this.confirm}>Confirm</Button>
+                        <Button mode="text" onPress={this.decline}>Decline</Button>
+                    </Card.Actions>
+                </Card>
+            </div>
         );
     }
 

@@ -26,7 +26,7 @@ class Home extends React.Component{
                         <Col md={{ span: 4, offset: 4 }}>
                             <Title>Welcome, Login!</Title>
                             <TextInput error={this.state.usernameErrCode} label='Username' value={this.state.username} onChangeText={username => this.setState({ username })} />
-                            <TextInput error={this.state.passwordErrCode} label='Password' value={this.state.password} onChangeText={password => this.setState({ password })} />
+                            <TextInput error={this.state.passwordErrCode} label='Password' value={this.state.password} onChangeText={password => this.setState({ password })} secureTextEntry={true} />
                             <Button mode="contained" onPress={this.attemptLogin}>Login</Button>
                             <Text>{"Don't have an account?"}</Text>
                             <a href="">Create an account</a>
@@ -77,7 +77,10 @@ class Home extends React.Component{
         function processRequest(e){
             if(xhr.readyState == 4 && xhr.status == 200){
                 let response = JSON.parse(xhr.responseText);
-                alert(xhr.responseText);s
+                alert(xhr.responseText);
+            } else {
+                let response = JSON.parse(xhr.responceText);
+                alert(xhr.responseText);
             }
         }
         //Attempt Login

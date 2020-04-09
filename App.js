@@ -6,7 +6,8 @@ import Register from './Register.js';
 import Profile from './Profile.js';
 import TravelPlanner from './TravelPlanner.js';
 import TravelPost from "./TravelPost.js";
-//import 'react-native-gesture-handler';
+
+import CreatePost from './CreatePost.js';
 
 class App extends React.Component {
 
@@ -18,7 +19,7 @@ class App extends React.Component {
 	render() {
 		return (
             <PaperProvider>
-				<Profile />
+				<Register />
             </PaperProvider>
 		);
 	}

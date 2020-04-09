@@ -36,8 +36,8 @@ class Register extends React.Component{
                             <TextInput error={this.state.lastNameErr} value={this.state.lastName} label='last name' onChangeText={lastName => this.setState({ lastName })}/>
                             <TextInput error={this.state.emailErr} value={this.state.email} label='email' onChangeText={email => this.setState({ email })}/>
                             <TextInput error={this.state.usernameErr} value={this.state.username} label='username' onChangeText={username => this.setState({ username })}/>
-                            <TextInput error={this.state.passwordErr || !this.state.passwordLength || !this.state.passwordMatch} value={this.state.password} label='password' onChangeText={password => this.setState({ password })}/>
-                            <TextInput error={this.state.passconfErr || !this.state.passwordMatch} value={this.state.confirmPass} label='confirm password' onChangeText={confirmPass => this.setState({ confirmPass })}/>
+                            <TextInput error={this.state.passwordErr || !this.state.passwordLength || !this.state.passwordMatch} value={this.state.password} label='password' onChangeText={password => this.setState({ password })} secureTextEntry={true}/>
+                            <TextInput error={this.state.passconfErr || !this.state.passwordMatch} value={this.state.confirmPass} label='confirm password' onChangeText={confirmPass => this.setState({ confirmPass })} secureTextEntry={true}/>
                             <Button mode="contained" onPress={this.register}>Sign Up!</Button>
                             <Text>Already have an account?</Text>
                             <a href="">Login</a>

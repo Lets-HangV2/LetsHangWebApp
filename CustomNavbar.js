@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl';
 
 class CustomNavbar extends React.Component{
 
@@ -20,15 +22,18 @@ class CustomNavbar extends React.Component{
                         Let's Hang
                     </Navbar.Brand>
                     <Nav className="ml-auto">
-                        <Nav.Link href="#home">Search</Nav.Link>
-                        <Nav.Link href="#profile">Profile</Nav.Link>
-                        <NavDropdown title="Actions" id="collasible-nav-dropdown">
-                        <NavDropdown.Item href="#action/3.1">Create new event</NavDropdown.Item>
+                        <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                            <Nav.Link href="#home">Search</Nav.Link>
+                        </Form>
+                        <NavDropdown title="Settings" id="collasible-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Notifications</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Messages</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Friend Requests</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link href="#profile">Create New Event</Nav.Link>
                     </Nav>
                 </Navbar>
             </>
