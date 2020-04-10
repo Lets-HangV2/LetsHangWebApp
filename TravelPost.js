@@ -14,7 +14,7 @@ class TravelPost extends React.Component{
     render(){
         return(
             <div className="travel-post">
-                <Card>
+                <Card onPress={this.gotoTravelPlanner}>
                     <Card.Title title={this.state.tripTitle} subtitle={this.state.tripDesc} />
                     <Card.Cover source={{uri: this.state.picURL}} />
                     <Card.Actions>
@@ -24,6 +24,10 @@ class TravelPost extends React.Component{
                 </Card>
             </div>
         );
+    }
+
+    gotoTravelPlanner =()=> {
+        alert('Going to travel planner');
     }
 
     confirm =()=>{

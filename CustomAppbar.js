@@ -1,12 +1,13 @@
 import React from 'react';
 import { Appbar, Portal, Dialog, Paragraph, Button } from 'react-native-paper';
 import { View } from 'react-native';
+import CreatePost from './CreatePost';
 
 class CustomAppbar extends React.Component{
 
     state = {
         username: 'Default Username',
-        isVisible: true
+        isVisible: false
     };
 
     render(){
@@ -16,9 +17,13 @@ class CustomAppbar extends React.Component{
                     <Appbar.Content title="Let's Hang" subtitle={this.state.username} onPress={this.gotoProfile} />
                     <Appbar.Action icon="magnify" onPress={this.search} />
                     <Appbar.Action icon="bell" onPress={this.gotoNotifications} />
-                    <Appbar.Action icon="briefcase-plus" onPress={this.showDialog} />
+                    <Appbar.Action icon="briefcase-plus" onPress={this.showPostScreen} />
                     <Appbar.Action icon="dots-vertical" onPress={this.settings} />
                 </Appbar>
+
+                <Portal>
+                    <CreatePost isBeingDisplayed={this.state.isVisible && this.showPostScreen} hideDialog={this.hidePostScreen} />
+                </Portal>
             </>
         );
     }
@@ -31,10 +36,6 @@ class CustomAppbar extends React.Component{
         alert('Going to search');
     }
 
-    gotoCreateEvent(){
-        alert('Going to create-event');
-    }
-
     gotoProfile(){
         alert('Going to profile');
     }
@@ -43,12 +44,11 @@ class CustomAppbar extends React.Component{
         alert('Settings pressed');
     }
 
-    showDialog = () => {
-        alert('Displaying dialog');
+    showPostScreen =()=>{
         this.setState({isVisible : true});
     }
 
-    hideDialog = () =>{
+    hidePostScreen =()=>{
         this.setState({isVisible : false});
     }
 

@@ -8,35 +8,55 @@ import CustomAppbar from './CustomAppbar.js';
 
 class Profile extends React.Component{
 
-    state = {
+    state = { 
         travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />],
         username: this.getUsername()
     }
 
     render() {
         return(
-            <Container>
-                <CustomAppbar />
-                    <Row className="normal-row">
-                        <Col>
-                            <Avatar.Image size={128} />
-                        </Col>
-                    </Row>
-                    <Row className="normal-row">
-                        <Col md={8}>
-                            <Title>{this.state.username}</Title>
-                        </Col>
-                        <Col md={2}>
-                            <Button mode="outlined" onClick={this.openFriendsList}>Friends</Button>
-                        </Col>
-                        <Col md={2}>
-                            <Button mode="contained" onClick={this.openMessages}>Message</Button>
-                        </Col>
-                    </Row>
-                    <hr className="hr" />
-                { this.renderTravelPosts() }
-            </Container>
+            <>
+                {this.checkAuth()}
+            </>
         );
+    }
+
+    checkAuth =()=>{
+        if(false){
+            return(
+                <Container>
+                    <Row>
+                        <Col>
+                            <h1>Unauthorized Access :(</h1>
+                        </Col>
+                    </Row>
+                </Container>
+            );
+        } else {
+            return(
+                <Container>
+                    <CustomAppbar />
+                        <Row className="normal-row">
+                            <Col>
+                                <Avatar.Image size={128} />
+                            </Col>
+                        </Row>
+                        <Row className="normal-row">
+                            <Col md={8}>
+                                <Title>{this.state.username}</Title>
+                            </Col>
+                            <Col md={2}>
+                                <Button mode="outlined" onClick={this.openFriendsList}>Friends</Button>
+                            </Col>
+                            <Col md={2}>
+                                <Button mode="contained" onClick={this.openMessages}>Message</Button>
+                            </Col>
+                        </Row>
+                        <hr className="hr" />
+                    { this.renderTravelPosts() }
+                </Container>
+            );
+        }
     }
 
     getUsername(){

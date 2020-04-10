@@ -6,15 +6,11 @@ import Col from 'react-bootstrap/Col';
 
 class CreatePost extends React.Component{
 
-    state={
-        visible: false
-    }
-
     render(){
 
         return(
             <>
-                <Modal visible={this.state.visible} onDismiss={this._hideModal}>
+                <Modal visible={this.props.isBeingDisplayed} onDismiss={this.props.hideDialog}>
                     <Container>
                         <Row>
                             <Col>
@@ -47,9 +43,6 @@ class CreatePost extends React.Component{
                         <Button mode="contained">Submit</Button>
                     </Container>
                 </Modal>
-                <Button style={{ marginTop: 30 }} onPress={this._showModal}>
-                    Show
-                </Button>
             </>
         );
 

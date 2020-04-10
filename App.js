@@ -19,7 +19,7 @@ class App extends React.Component {
 	render() {
 		return (
             <PaperProvider>
-				<Register />
+				<Profile />
             </PaperProvider>
 		);
 	}
