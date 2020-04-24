@@ -27,7 +27,7 @@ class TravelPost extends React.Component{
     }
 
     gotoTravelPlanner =()=> {
-        alert('Going to travel planner');
+        window.location.href = '/travelPlanner';
     }
 
     confirm =()=>{

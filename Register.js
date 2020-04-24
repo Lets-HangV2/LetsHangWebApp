@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Link, Redirect } from 'react-router-dom';
 
 class Register extends React.Component{
 
@@ -39,8 +40,8 @@ class Register extends React.Component{
                             <TextInput error={this.state.passwordErr || !this.state.passwordLength || !this.state.passwordMatch} value={this.state.password} label='password' onChangeText={password => this.setState({ password })} secureTextEntry={true}/>
                             <TextInput error={this.state.passconfErr || !this.state.passwordMatch} value={this.state.confirmPass} label='confirm password' onChangeText={confirmPass => this.setState({ confirmPass })} secureTextEntry={true}/>
                             <Button mode="contained" onPress={this.register}>Sign Up!</Button>
-                            <Text>Already have an account?</Text>
-                            <a href="">Login</a>
+                            <Text>Already have an account? </Text>
+                            <Link to="/">Login</Link>
                             {(this.state.firstNameErr || this.state.lastNameErr || this.state.emailErr || this.state.usernameErr || this.state.passwordErr || this.state.passconfErr) && <p className="errorMsg">All fields must be filled out</p>}
                             {!this.state.passwordLength && <p className="errorMsg">Password is too short, must be at least 8 characters</p>}
                             {!this.state.passwordMatch && <p className="errorMsg">Passwords do not match</p>}
@@ -118,9 +119,11 @@ class Register extends React.Component{
         
         //ping file that handles registration
         let xhr = new XMLHttpRequest();
-        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/register';
+        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/register1';
 
         xhr.open('POST', url);
+        console.log('OPENING: ', xhr.status);
+
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         var data = JSON.stringify({
@@ -134,13 +137,24 @@ class Register extends React.Component{
         console.log('Sending data');
         xhr.send(data);
 
+        xhr.onprogress = function(){
+            console.log('LOADING: ', xhr.status);
+        };
+
+        xhr.onload = function(){
+            console.log('DONE: ', xhr.status);
+        };
+
         xhr.onreadystatechange = processRequest;
 
         function processRequest(e){
             if(xhr.readyState == 4 && xhr.status == 200){
                 var response = JSON.parse(xhr.responseText);
-                console.log(response.status);
-                //display profile page
+                if(response['status'].localeCompare('Sucessful') == 0){
+                    <Redirect to="/" />
+                } else {
+                    console.log('ERROR RESPONSE: ', response['status']);
+                }
             }
         };
     }

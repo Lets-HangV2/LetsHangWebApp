@@ -9,8 +9,8 @@ import CustomAppbar from './CustomAppbar.js';
 class Profile extends React.Component{
 
     state = { 
-        travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />],
-        username: this.getUsername()
+        travelPostArr: [<TravelPost />, <TravelPost />],
+        username: this.props.username
     }
 
     render() {
@@ -35,7 +35,7 @@ class Profile extends React.Component{
         } else {
             return(
                 <Container>
-                    <CustomAppbar />
+                    
                         <Row className="normal-row">
                             <Col>
                                 <Avatar.Image size={128} />
@@ -46,10 +46,10 @@ class Profile extends React.Component{
                                 <Title>{this.state.username}</Title>
                             </Col>
                             <Col md={2}>
-                                <Button mode="outlined" onClick={this.openFriendsList}>Friends</Button>
+                                <Button mode="outlined" onPress={this.openFriendsList}>Friends</Button>
                             </Col>
                             <Col md={2}>
-                                <Button mode="contained" onClick={this.openMessages}>Message</Button>
+                                <Button mode="contained" onPress={this.openMessages}>Message</Button>
                             </Col>
                         </Row>
                         <hr className="hr" />
@@ -59,16 +59,23 @@ class Profile extends React.Component{
         }
     }
 
+    getTravelPosts =()=> {
+        travelPosts = [];
+        return travelPosts;
+    }
+
     getUsername(){
         return 'username';
     }
 
     openFriendsList =()=>{
         alert('Open friends list');
+        window.location.href = '/friends';
     }
 
     openMessages =()=>{
-        alert('Open messages');
+        console.log('Opening Messages');
+        window.location.href = '/messages';
     }
 
     renderTravelPosts =()=>{
@@ -78,10 +85,6 @@ class Profile extends React.Component{
         } else {
             return this.state.travelPostArr.map(TravelPostArr => <Row><Col>{ TravelPostArr }</Col></Row>)
         }
-    }
-
-    openFriendsList =()=>{
-        console.log('opening friends list...');
     }
 
 }

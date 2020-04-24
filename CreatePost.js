@@ -30,16 +30,6 @@ class CreatePost extends React.Component{
                                 <TextInput label="End Date" />
                             </Col>
                         </Row>
-                        <Row>
-                            <Col>
-                                <TextInput label="Invite Friends" />
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col>
-                                <TextInput multiline={true} editable={false} />
-                            </Col>
-                        </Row>
                         <Button mode="contained">Submit</Button>
                     </Container>
                 </Modal>
