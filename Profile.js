@@ -1,17 +1,17 @@
 import React from 'react';
-import { Title, Avatar, Button} from 'react-native-paper';
+import { Title, Avatar, Button } from 'react-native-paper';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TravelPost from './TravelPost.js';
-import CustomAppbar from './CustomAppbar.js';
 
 class Profile extends React.Component{
 
     state = { 
-        travelPostArr: [<TravelPost />, <TravelPost />],
-        username: this.props.username
-    }
+        travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />],
+        username: this.props.username,
+        userID: this.props.userID
+    };
 
     render() {
         return(
@@ -23,6 +23,7 @@ class Profile extends React.Component{
 
     checkAuth =()=>{
         if(false){
+            alert(this.props.authenticated);
             return(
                 <Container>
                     <Row>
@@ -33,9 +34,9 @@ class Profile extends React.Component{
                 </Container>
             );
         } else {
+            //alert(this.props.authenticated);
             return(
                 <Container>
-                    
                         <Row className="normal-row">
                             <Col>
                                 <Avatar.Image size={128} />
@@ -69,7 +70,6 @@ class Profile extends React.Component{
     }
 
     openFriendsList =()=>{
-        alert('Open friends list');
         window.location.href = '/friends';
     }
 

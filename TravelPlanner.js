@@ -2,6 +2,8 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import AirlineTag from './AirlineTag.js';
+import HotelTag from './HotelTag.js';
 
 class TravelPlanner extends React.Component{
 
@@ -20,12 +22,12 @@ class TravelPlanner extends React.Component{
                     </Row>
                     <Row>
                         <Col>
-                            <h1>This is the Airline selection</h1>
+                            <AirlineTag />
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <h1>This is the Hotel selection</h1>
+                            <HotelTag />
                         </Col>
                     </Row>
                     <Row>

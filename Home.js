@@ -79,7 +79,10 @@ class Home extends React.Component{
                 const authToken = response['token'];
                 var decode = this.parseJWT(authToken);
                 var uid = decode['user'];
-                this.props.history.push('/profile/');
+                //this.props.getUserID(uid);
+                document.cookie = "username="+uid;
+                this.props.getUserID();
+                window.location.href = "/profile";
                 return;
             }
         }

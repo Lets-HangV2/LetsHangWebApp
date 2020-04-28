@@ -13,6 +13,7 @@ class UserFriendRequest extends React.Component{
         return(
             <Container>
                 {this.renderFriendRequests()}
+                <UserTag />
             </Container>
         );
 

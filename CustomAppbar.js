@@ -1,5 +1,5 @@
 import React from 'react';
-import { Appbar, Portal, Dialog, Paragraph, Button } from 'react-native-paper';
+import { Appbar, Portal, Dialog, Paragraph, Button} from 'react-native-paper';
 import CreatePost from './CreatePost';
 import Container from 'react-bootstrap/Container';
 import LogoutDialog from './LogoutDialog.js';
@@ -23,19 +23,19 @@ class CustomAppbar extends React.Component{
                     <Appbar.Action icon="dots-vertical" onPress={this.showSettings} />
                 </Appbar>
 
-                <Portal>
-                    <CreatePost isBeingDisplayed={this.state.isVisible && this.showPostScreen} hideDialog={this.hidePostScreen} />
-                    <Dialog visible={this.state.isDialogVisible && this.showSettings} onDismiss={this.hideSettings}>
-                        <Dialog.Title>Alert</Dialog.Title>
-                        <Dialog.Content>
-                            <Paragraph>Are you sure you want to logout?</Paragraph>
-                        </Dialog.Content>
-                        <Dialog.Actions>
-                            <Button onPress={this.handleLogout}>Yes</Button>
-                            <Button onPress={this.hideSettings}>No</Button>
-                        </Dialog.Actions>
-                    </Dialog>
-                </Portal>
+                    <Portal>
+                        <CreatePost isBeingDisplayed={this.state.isVisible && this.showPostScreen} hideDialog={this.hidePostScreen} />
+                        <Dialog visible={this.state.isDialogVisible && this.showSettings} onDismiss={this.hideSettings}>
+                            <Dialog.Title>Alert</Dialog.Title>
+                            <Dialog.Content>
+                                <Paragraph>Are you sure you want to logout?</Paragraph>
+                            </Dialog.Content>
+                            <Dialog.Actions>
+                                <Button onPress={this.handleLogout}>Yes</Button>
+                                <Button onPress={this.hideSettings}>No</Button>
+                            </Dialog.Actions>
+                        </Dialog>
+                    </Portal>
                     
             </Container>
         );

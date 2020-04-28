@@ -10,43 +10,67 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import FriendsList from './FriendsList.js';
 import Search from './Search.js';
 import PersonalMessage from './PersonalMessage.js';
+import UserTag from './UserTag.js';
+import AirlineTag from './AirlineTag.js';
 
 class App extends React.Component {
 
 	state={
-		userID: ''
+		userID: '',
+		loggedIn: false,
+		username: ''
+	}
+
+	getID = () =>{
+		var name = document.cookie;
+		name = name.substr(9,name.length);
+		alert(name);
+		this.state.username = this.setState({name});
+	}
+
+	getUsername=()=>{
+		return this.state.username;
 	}
 
 	render() {
 		return (
             <PaperProvider>
 				<Router>
-					<Route path="/" exact component={Home} />
-					<Route path="/register" exact component={Register} />
+					<Route path="/" exact>
+						<Home getUserID={this.getID} />
+					</Route>
+					<Route path="/register" exact>
+						<Register />
+					</Route>
 					<Route path="/profile">
-						<CustomAppbar username="USERNAME" />
-						<Profile username="USERNAME" />
+						<CustomAppbar username={this.state.username} />
+						<Profile username="USERNAME" parentData={this.state.username} />
 					</Route>
 					<Route path="/friends">
 						<CustomAppbar username="USERNAME" />
-						<FriendsList />
+						<FriendsList authenticated={this.state.loggedIn} />
 					</Route>
 					<Route path="/search">
 						<CustomAppbar username="USERNAME" />
-						<Search />
+						<Search authenticated={this.state.loggedIn} />
 					</Route>
 					<Route path="/travelPlanner">
 						<CustomAppbar username="USERNAME" />
-						<TravelPlanner />
+						<TravelPlanner authenticated={this.state.loggedIn} />
 					</Route>
 					<Route path="/DirectMessages">
 						<CustomAppbar username="USERNAME" />
-						<PersonalMessage />
+						<PersonalMessage authenticated={this.state.loggedIn} />
+					</Route>
+					<Route path="/test" exact>
+						<AirlineTag />
 					</Route>
 				</Router>
             </PaperProvider>
 		);
 	}
+
+	
 }
 
 const styles = StyleSheet.create({
