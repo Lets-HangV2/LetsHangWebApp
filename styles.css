@@ -37,3 +37,11 @@
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
+.eventButton{
+    margin: auto;
+}
+
+.dialog{
+    width: 150px;
+}
