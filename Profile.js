@@ -4,14 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import TravelPost from './TravelPost.js';
+import CustomAppbar from './CustomAppbar';
+import {UserContext} from './UserContext';
 
 class Profile extends React.Component{
 
-    state = { 
-        travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />],
-        username: this.props.username,
-        userID: this.props.userID
+    state = {
+        travelPostArr: [<TravelPost />, <TravelPost />, <TravelPost />]
     };
+
+    static contextType = UserContext;
 
     render() {
         return(
@@ -34,9 +36,10 @@ class Profile extends React.Component{
                 </Container>
             );
         } else {
-            //alert(this.props.authenticated);
+            alert(contextType);
             return(
                 <Container>
+                        <CustomAppbar />
                         <Row className="normal-row">
                             <Col>
                                 <Avatar.Image size={128} />
@@ -44,7 +47,7 @@ class Profile extends React.Component{
                         </Row>
                         <Row className="normal-row">
                             <Col md={8}>
-                                <Title>{this.state.username}</Title>
+                                <Title>{this.props.username}</Title>
                             </Col>
                             <Col md={2}>
                                 <Button mode="outlined" onPress={this.openFriendsList}>Friends</Button>

@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AirlineTag from './AirlineTag.js';
 import HotelTag from './HotelTag.js';
-import SubEvent from './SubEvent.js';
+//import SubEvent from './SubEvent.js';
 import { View } from 'react-native';
 import { Button, Checkbox, Paragraph, Portal, Dialog, TextInput, Title} from 'react-native-paper';
 
@@ -128,7 +128,7 @@ class TravelPlanner extends React.Component{
                             Add Flight
                         </Button>
                         <Portal>
-                            <Dialog visible={this.state.flightVisible} onDismiss={this._hideDialog}>
+                            <Dialog visible={this.state.flightVisible} onDismiss={this._hideFlightDialog}>
                                 <Dialog.Title>Find Flight</Dialog.Title>
                                 <Dialog.Content>
                                 <Paragraph>This is simple dialog</Paragraph>
@@ -144,7 +144,7 @@ class TravelPlanner extends React.Component{
                             Add Hotel
                         </Button>
                         <Portal>
-                            <Dialog visible={this.state.hotelVisible} onDismiss={this._hideDialog}>
+                            <Dialog visible={this.state.hotelVisible} onDismiss={this._hideHotelDialog}>
                                 <Container>
                                 <Dialog.Title>
                                     <Title>
@@ -188,7 +188,7 @@ class TravelPlanner extends React.Component{
                         </Button>
                         <View>
                         <Portal>
-                            <Dialog visible={this.state.eventVisible} onDismiss={this._hideDialog}>
+                            <Dialog visible={this.state.eventVisible} onDismiss={this._hideEventDialog}>
                                 <Container>
                                 <Dialog.Title>
                                     <Title>

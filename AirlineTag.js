@@ -35,7 +35,9 @@ class AirlineTag extends React.Component{
                         </Row>
                     </Col>
                     <Col>
-                        <Title>Cost: </Title>
+                        <Row>
+                            <Title>Cost: </Title>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

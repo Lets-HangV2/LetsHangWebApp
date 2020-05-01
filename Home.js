@@ -4,18 +4,21 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './styles.css';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { UserContext } from './UserContext';
+
 
 class Home extends React.Component{
     
+    static contextType = UserContext;
+
     state = {
         username: '',
         password: '',
         usernameErrCode: false,
         passwordErrCode: false,
         filledOutErr: false,
-        noMatchErr: false,
-        display: this.props.value
+        noMatchErr: false
     };
 
     render() {
@@ -40,7 +43,8 @@ class Home extends React.Component{
     }
 
     attemptLogin = () => {
-        var isFilled = true;
+        alert(usercontext);
+        /*var isFilled = true;
         this.setState({ filledOutErr: false });
         this.setState({ usernameErrCode: false });
         this.setState({ passwordErrCode: false });
@@ -61,16 +65,17 @@ class Home extends React.Component{
 
         //Call login function on API Gateway
         let xhr = new XMLHttpRequest();
-        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/login1';
+        let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/login1';
 
         //Setting it to false to make it so the page waits for the response
-        xhr.open('POST', url, false);
+        xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/json');
 
         let data = JSON.stringify({
             'username': this.state.username,
             'password': this.state.password
         });
+
         xhr.send(data);
 
         if(xhr.status == 200){
@@ -78,10 +83,10 @@ class Home extends React.Component{
             if(response['message'].localeCompare('sucessful') == 0){
                 const authToken = response['token'];
                 var decode = this.parseJWT(authToken);
-                var uid = decode['user'];
+                var username = decode['user'];
                 //this.props.getUserID(uid);
-                document.cookie = "username="+uid;
-                this.props.getUserID();
+                //document.cookie = "username="+username;
+                this.props.data.getID(username);
                 window.location.href = "/profile";
                 return;
             }
@@ -89,6 +94,7 @@ class Home extends React.Component{
         this.setState({ usernameErrCode: true });
         this.setState({ passwordErrCode: true });
         this.setState({ noMatchErr: true });
+        */
     } //End of attemptLogin()
 
     parseJWT =(token)=>{
@@ -96,7 +102,7 @@ class Home extends React.Component{
         var base64 = base64Url.replace(/-/g, '/');
         return JSON.parse(atob(base64));
     }
-
+    
 }//End of class
 
 export default Home;

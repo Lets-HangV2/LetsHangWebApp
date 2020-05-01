@@ -7,7 +7,7 @@ import LogoutDialog from './LogoutDialog.js';
 class CustomAppbar extends React.Component{
 
     state = {
-        username: this.props.username,
+        username: '',
         isVisible: false,
         isDialogVisible: false
     };
