@@ -5,6 +5,11 @@ import Col from 'react-bootstrap/Col';
 import { Avatar, Title } from 'react-native-paper';
 
 class HotelTag extends React.Component{
+
+    constructor(props){
+        super(props);
+    }
+
     render(){
         return(
             <Container>
@@ -15,23 +20,18 @@ class HotelTag extends React.Component{
                     </Col>
                     <Col>
                         <Row>
-                            <Title>Name: </Title>
+                            <Title>Name: {this.props.name}</Title>
                         </Row>
                         <Row>
-                            <Title>Location: </Title>
-                        </Row>
-                    </Col>
-                    <Col>
-                        <Row>
-                            <Title>Check-in Date: </Title>
-                        </Row>
-                        <Row>
-                            <Title>Check-out Date: </Title>
+                            <Title>Location: {this.props.city}</Title>
                         </Row>
                     </Col>
                     <Col>
                         <Row>
-                            <Title>Cost: </Title>
+                            <Title>Rating: {this.props.rating}</Title>
+                        </Row>
+                        <Row>
+                            <Title>Cost: {this.props.cost}</Title>
                         </Row>
                     </Col>
                 </Row>

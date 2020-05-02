@@ -2,48 +2,47 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Avatar, Button, Title } from 'react-native-paper';
+import { Avatar, Title } from 'react-native-paper';
 
-class AirlineTag extends React.Component{
+class EventTag extends React.Component{
 
     constructor(props){
         super(props);
     }
+
     render(){
         return(
-            <Container onClick={this.searchFlight}>
+            <Container>
                 <hr />
                 <Row>
                     <Col md={2}>
-                        <Avatar.Icon icon="airplane" />
+                        <Avatar.Icon icon="alpha-e-box" />
                     </Col>
                     <Col>
                         <Row>
-                            <Title>From: {this.props.from}</Title>
+                            <Title>Name: {this.props.name}</Title>
                         </Row>
                         <Row>
-                            <Title>To: {this.props.to}</Title>
+                            <Title>Type: {this.props.type}</Title>
                         </Row>
                     </Col>
                     <Col>
                         <Row>
-                            <Title>Departure: {this.props.leave}</Title>
+                            <Title>Date: {this.props.date}</Title>
                         </Row>
                         <Row>
-                            <Title>Arrival: {this.props.arrive}</Title>
+                            <Title>Location: {this.props.location}</Title>
                         </Row>
                     </Col>
                     <Col>
-                        <Title>Cost: {this.props.cost}</Title>
+                        <Row>
+                            <Title>Cost: {this.props.cost}</Title>
+                        </Row>
                     </Col>
                 </Row>
             </Container>
         );
     }
-
-    searchFlight=()=>{
-        var origin, dest, leaveDate, returnDate, ticketNum;
-    }
 }
 
-export default AirlineTag;
+export default EventTag;
