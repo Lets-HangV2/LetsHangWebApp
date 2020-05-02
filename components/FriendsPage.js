@@ -45,23 +45,23 @@ const FriendsPage =()=>{
 
     return(
         <>
-        <CustomAppbar username={username} />
-        <Container>
-            <Row>
-                <Col>
-                    <Button mode="text" onPress={setDisabled} disabled={showFriends} >Friends</Button>
-                </Col>
-                <Col>
-                    <Button mode="text" onPress={setDisabled} disabled={showRequests} >Friends Requests</Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    {showFriends && <FriendList username={username} />}
-                    {showRequests && <FriendRequestList username={username} /> } 
-                </Col>
-            </Row>
-        </Container>
+            <CustomAppbar username={username} />
+            <Container>
+                <Row>
+                    <Col>
+                        <Button mode="text" onPress={setDisabled} disabled={showFriends} >Friends</Button>
+                    </Col>
+                    <Col>
+                        <Button mode="text" onPress={setDisabled} disabled={showRequests} >Friends Requests</Button>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        {showFriends && <FriendList username={username} />}
+                        {showRequests && <FriendRequestList username={username} /> } 
+                    </Col>
+                </Row>
+            </Container>
         </>
     );
 }

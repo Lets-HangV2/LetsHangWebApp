@@ -14,6 +14,7 @@ import Profile from './components/Profile';
 import FriendsPage from './components/FriendsPage';
 import TravelPlanner from './components/TravelPlanner';
 import Search from './components/Search';
+import Messager from './components/Messager';
 
 
 import UserTag from './UserTag.js';
@@ -37,9 +38,7 @@ class App extends React.Component {
 							<CustomAppbar username="USERNAME" />
 							<PersonalMessage />
 						</Route>
-						<Route path="/test" exact>
-							<AirlineTag />
-						</Route>
+						<Route path="/test" exact component={Messager}/>
 					</Router>
 				</UserProvider>
             </PaperProvider>
