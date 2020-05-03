@@ -50,6 +50,7 @@ const Home =()=>{
 
         let xhr = new XMLHttpRequest();
         let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/login1';
+        //let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/test/login1';
 
         xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/json');

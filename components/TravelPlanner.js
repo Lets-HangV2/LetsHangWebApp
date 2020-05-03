@@ -16,9 +16,11 @@ const TravelPlanner =()=>{
 
     const [planID, setplanID] = useState('f977b1bb-9c4a-4b44-9f52-f205735b37c1');
     const [tripName, setTripName] = useState('TRIP NAME NOT FOUND');
+
     const [flights, setFlights] = useState([]);
     const [hotels, setHotels] = useState([]);
     const [events, setEvents] = useState([]);
+
     const [airportCity1, setAirportCity1] = useState([]);
     const [airportCity2, setAirportCity2] = useState([]);
     const [airport1Name, setAirport1Name] = useState('');
@@ -43,7 +45,8 @@ const TravelPlanner =()=>{
     const [potentialHotels, setPotentialHotels] = useState([]);
 
     useEffect(() => {
-        getPlanData;
+        console.log('Here');
+        getPlanData();
     }, []);
 
     const _showFlightDialog =()=>{setFlightVisible(true);}
@@ -76,9 +79,9 @@ const TravelPlanner =()=>{
             if(xhr.readyState == 4 && xhr.status == 200){
                 let response = JSON.parse(xhr.responseText);
                 console.log(response);
-                setEvents(...response[0]['events']);
-                setHotels(...response[0]['hotel']);
-                setFlights(...response[0]['airfare']);
+                setEvents(...events, response[0]['events']);
+                setHotels(...hotels, response[0]['hotel']);
+                setFlights(...flights, response[0]['airfare']);
             }
         };
     }
@@ -397,7 +400,7 @@ const TravelPlanner =()=>{
             <CustomAppbar username={username} />
             <Row>
                 <Col>
-                    <h1>This is the picture area</h1>
+                    <h1>{tripName}</h1>
                 </Col>
             </Row>
             <Row>
@@ -702,35 +705,23 @@ const TravelPlanner =()=>{
             </Row>
             <Row>
                 <Col>
-                    {   
-                        flights.map(flight=>{
-                            return(
-                                <AirlineTag from={flight.ARV.iataCode} to={flight.DRP.iataCode} arrive={flight.ARV.at} leave={flight.DRP.at} cost={flight.Cost}/>
-                            )
-                        })
-                    }
+                    {flights.map(flight=>(
+                        <AirlineTag from={flight.ARV.iataCode} to={flight.DRP.iataCode} arrive={flight.ARV.at} leave={flight.DRP.at} cost={flight.Cost} />
+                    ))}
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    {   
-                        hotels.map(hotel=>{
-                            return(
-                                <HotelTag city={hotel.city} cost={hotel.cost} name={hotel.name} rating={hotel.rating}/>
-                            )
-                        })
-                    }
+                    {hotels.map(hotel=>(
+                        <HotelTag city={hotel.city} cost={hotel.cost} name={hotel.name} rating={hotel.rating}/>
+                    ))}
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    {
-                        events.map(event =>{
-                            return(
-                            <EventTag name={event.name} location={event.location} type={event.type} date={event.date} cost={event.cost}/>
-                            )
-                        })
-                    }
+                    {events.map(event =>(
+                        <EventTag name={event.name} location={event.location} type={event.type} date={event.date} cost={event.cost}/>
+                    ))}
                 </Col>
             </Row>
         </Container>
