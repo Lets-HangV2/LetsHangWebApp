@@ -2,35 +2,30 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Avatar, Button, Title } from 'react-native-paper';
+import { Avatar, Title } from 'react-native-paper';
 
-const AirlineTag = props =>{
-
-    const searchFlight=()=>{
-        var origin, dest, leaveDate, returnDate, ticketnum;
-    }
-
+const EventTag = props =>{
     return(
-        <Container onClick={searchFlight}>
+        <Container>
             <hr />
             <Row>
                 <Col md={2}>
-                    <Avatar.Icon icon="airplane" />
+                    <Avatar.Icon icon="alpha-e-box" />
                 </Col>
                 <Col>
                     <Row>
-                        <Title>From: {props.from}</Title>
+                        <Title>Name: {props.name}</Title>
                     </Row>
                     <Row>
-                        <Title>To: {props.to}</Title>
+                        <Title>Type: {props.type}</Title>
                     </Row>
                 </Col>
                 <Col>
                     <Row>
-                        <Title>Departure: {props.leave}</Title>
+                        <Title>Date: {props.date}</Title>
                     </Row>
                     <Row>
-                        <Title>Arrival: {props.arrive}</Title>
+                        <Title>Location: {props.location}</Title>
                     </Row>
                 </Col>
                 <Col>
@@ -43,4 +38,4 @@ const AirlineTag = props =>{
     );
 }
 
-export default AirlineTag;
+export default EventTag;
