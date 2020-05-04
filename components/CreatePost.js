@@ -34,7 +34,7 @@ const CreatePost = props =>{
                 console.log(response.message);
                 nestedProps.hideDialog;
             }
-        }
+        };
         
 
 

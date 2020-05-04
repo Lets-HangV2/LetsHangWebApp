@@ -9,6 +9,7 @@ import { View } from 'react-native';
 import { Button, Checkbox, Paragraph, Portal, Dialog, TextInput, Title} from 'react-native-paper';
 import CustomAppbar from './CustomAppbar';
 import { UserContext } from '../UserContext';
+import Messager from './Messager';
 
 const TravelPlanner =()=>{
 
@@ -722,6 +723,11 @@ const TravelPlanner =()=>{
                     {events.map(event =>(
                         <EventTag name={event.name} location={event.location} type={event.type} date={event.date} cost={event.cost}/>
                     ))}
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Messager planID={planID} username={username}/>
                 </Col>
             </Row>
         </Container>

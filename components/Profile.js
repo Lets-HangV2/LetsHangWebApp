@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Title, Avatar, Button } from 'react-native-paper';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -12,6 +12,11 @@ const Profile = (props) =>{
 
     let history = useHistory();
     const [username, setUsername] = useContext(UserContext);
+    const [travelPosts, setTravelPost] = useState([]);
+
+    useEffect(() =>{
+        renderTravelPosts();
+    }, []);
 
     const openFriendsList=()=>{
         history.push('/friends');
@@ -35,14 +40,13 @@ const Profile = (props) =>{
 
         xhr.send(data);
 
-        if(xhr.status == 200){
-            const response = JSON.parse(xhr.responseText);
-            console.log(response);
-        }
-        
-        return(
-            <TravelPost />
-        );
+        xhr.onreadystatechange = function(e){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                const response = JSON.parse(xhr.responseText);
+                console.log(response);
+            }
+        };
+
     }
 
     if(username !== null){
@@ -78,7 +82,9 @@ const Profile = (props) =>{
                     </Col>
                 </Row>
                 <hr className="hr" />
-                { renderTravelPosts() }
+                { travelPosts.map(post => (
+                    <TravelPost />
+                )) }
             </Container>
         );
     }
