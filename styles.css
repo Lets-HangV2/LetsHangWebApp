@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+body{
+    font-family: 'Work Sans', sans-serif;
+}
+
+th{
+    font-size:24px;
+}
+
 .fullpage{
     height: 100vh;
     background-image: url(./assets/imgMain.jpg);

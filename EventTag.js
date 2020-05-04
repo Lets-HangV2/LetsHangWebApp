@@ -13,30 +13,29 @@ class EventTag extends React.Component{
     render(){
         return(
             <Container>
-                <hr />
                 <Row>
                     <Col md={2}>
                         <Avatar.Icon icon="alpha-e-box" />
                     </Col>
-                    <Col>
+                    <Col md={4}>
                         <Row>
-                            <Title>Name: {this.props.name}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Name: {this.props.name}</Title>
                         </Row>
                         <Row>
-                            <Title>Type: {this.props.type}</Title>
-                        </Row>
-                    </Col>
-                    <Col>
-                        <Row>
-                            <Title>Date: {this.props.date}</Title>
-                        </Row>
-                        <Row>
-                            <Title>Location: {this.props.location}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Type: {(this.props.type).replace('_', ' ')}</Title>
                         </Row>
                     </Col>
-                    <Col>
+                    <Col md={3}>
                         <Row>
-                            <Title>Cost: {this.props.cost}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Date: {(this.props.date).slice(0, 10)}</Title>
+                        </Row>
+                        <Row>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Location: {this.props.location}</Title>
+                        </Row>
+                    </Col>
+                    <Col md={2}>
+                        <Row>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "12px"}}>Cost: ${this.props.cost}</Title>
                         </Row>
                     </Col>
                 </Row>

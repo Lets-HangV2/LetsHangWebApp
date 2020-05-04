@@ -12,26 +12,25 @@ class HotelTag extends React.Component{
 
     render(){
         return(
-            <Container>
-                <hr />
+            <Container style={{"marginTop": "25px", "marginBottom": "25px", "fontSize": "20px"}}>
                 <Row>
                     <Col md={2}>
                         <Avatar.Icon icon="hotel" />
                     </Col>
-                    <Col>
+                    <Col md={6}>
                         <Row>
-                            <Title>Name: {this.props.name}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Name: {this.props.name}</Title>
                         </Row>
                         <Row>
-                            <Title>Location: {this.props.city}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Location: {this.props.city}</Title>
                         </Row>
                     </Col>
-                    <Col>
+                    <Col md={4}>
                         <Row>
-                            <Title>Rating: {this.props.rating}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "80px"}}>Rating: {this.props.rating}</Title>
                         </Row>
                         <Row>
-                            <Title>Cost: {this.props.cost}</Title>
+                            <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "80px"}}>Cost: ${this.props.cost}</Title>
                         </Row>
                     </Col>
                 </Row>
