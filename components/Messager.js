@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, Divider, Title } from 'react-native-paper';
 import ChatBubble from './posts/ChatBubble';
 import { ScrollView } from 'react-native';
 
@@ -72,11 +72,16 @@ const Messager =props=>{
     }
 
     return(
-        <Container>
-            <hr />
+        <>
+            <Row style={{borderBottomStyle: 'solid', borderBottomWidth: '2px'}}>
+                <Col style={{textAlign: 'center'}}>
+                    <h1>Chat</h1>
+                </Col>
+            </Row>
+            <Divider />
             <ScrollView>
             <Row>
-                <Col style={{maxHeight: '80vh', marginTop: '24px' }} >
+                <Col style={{minHeight: '80vh', maxHeight: '80vh', marginTop: '24px' }} >
                     {
                         messagesContent.map(singleMessage => (
                             <ChatBubble content={singleMessage} />
@@ -85,15 +90,15 @@ const Messager =props=>{
                 </Col>
             </Row>
             </ScrollView>
-            <Row style={{paddingBottom: '24px'}} >
+            <Row style={{paddingBottom: '24px', marginRight: '0px'}} >
                 <Col md={10}>
-                    <TextInput value={message} onChangeText={text => setMessage(text)} multiline={true} />
+                    <TextInput value={message} onChangeText={text => setMessage(text)} multiline={true} placeholder="Message..." />
                 </Col>
                 <Col>
                     <Button mode="contained" onPress={sendMessage} style={{height: '100%'}} >Send</Button>
                 </Col>
             </Row>
-        </Container>
+        </>
     );
 }
 

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Appbar, Portal, Dialog, Paragraph, Button} from 'react-native-paper';
 import CreatePost from './CreatePost';
 import Container from 'react-bootstrap/Container';
 import { useHistory } from 'react-router-dom';
 import LogoutDialog from './LogoutDialog';
+
+import Row from 'react-bootstrap/Row'
 
 const CustomAppbar = props =>{
 
@@ -15,6 +17,12 @@ const CustomAppbar = props =>{
     const gotoProfile=()=>{
         const url = '/profile/'+props.username;
         history.replace(url);
+    }
+
+    const handleLogout=()=>{
+        console.log('here');
+        hideSettings;
+        history.location.pathname.replace('/');
     }
 
     const search=()=>{history.push('/search');}
@@ -32,20 +40,21 @@ const CustomAppbar = props =>{
 
 
     return(
-        <Container>
+        <>
             <Appbar>
                 <Appbar.Content title="Let's Hang" subtitle={props.username} onPress={gotoProfile}/>
-                <Appbar.Action icon="magnify" onPress={search} />
-                <Appbar.Action icon="bell" onPress={gotoNotifications} />
+                {/*<Appbar.Action icon="magnify" onPress={search} />*/}
+                {/*<Appbar.Action icon="bell" onPress={gotoNotifications} />*/}
                 <Appbar.Action icon="briefcase-plus" onPress={showPostScreen} />
                 <Appbar.Action icon="dots-vertical" onPress={showSettings} />
             </Appbar>
 
             <Portal>
                 <CreatePost isBeingDisplayed={isVisible && showPostScreen} hideDialog={hidePostScreen} username={props.username} />
-                <LogoutDialog isBeingDisplayed={settingsVisible && showSettings} hideDialog={hideSettings} username={props.username} />
+                <LogoutDialog isBeingDisplayed={settingsVisible && showSettings} hideDialog={hideSettings} username={props.username} logout={handleLogout}/>
             </Portal>
-        </Container>
+            
+        </>
     );
 }
 

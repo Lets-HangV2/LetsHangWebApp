@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet} from "react-native";
 import { Provider as PaperProvider } from 'react-native-paper';
 import Register from './Register.js';
-//import TravelPlanner from './TravelPlanner.js';
+import TravelPlanner from './TravelPlanner.js';
 import CustomAppbar from './CustomAppbar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 //import Search from './Search.js';
@@ -12,13 +12,14 @@ import { UserProvider } from './UserContext';
 import Home from './components/Home';
 import Profile from './components/Profile';
 import FriendsPage from './components/FriendsPage';
-import TravelPlanner from './components/TravelPlanner';
+//import TravelPlanner from './components/TravelPlanner';
 import Search from './components/Search';
 import Messager from './components/Messager';
 
 
 import UserTag from './UserTag.js';
-import AirlineTag from './AirlineTag.js';
+import AirlineTag from './components/tags/AirlineTag.js';
+import EventTag from './components/tags/EventTag';
 
 class App extends React.Component {
 
@@ -38,7 +39,7 @@ class App extends React.Component {
 							<CustomAppbar username="USERNAME" />
 							<PersonalMessage />
 						</Route>
-						<Route path="/test" exact component={Messager}/>
+						<Route path="/test" exact component={EventTag}/>
 					</Router>
 				</UserProvider>
             </PaperProvider>

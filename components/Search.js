@@ -16,19 +16,17 @@ const Search =()=>{
     }
 
     return(
-        <>
+        <Container>
             <CustomAppbar username={username} />
-            <Container>
-                <Row>
-                    <Col md={10}>
-                        <TextInput placeholder="Search for a user" value={searchQuery} onChangeText={text => setSearchQuery(text)} />
-                    </Col>
-                    <Col md={2}>
-                        <Button mode="outlined" onPress={search}>Search</Button>
-                    </Col>
-                </Row>
-            </Container>
-        </>
+            <Row style={{paddingTop: '24px'}}>
+                <Col md={10}>
+                    <TextInput placeholder="Search for a user" value={searchQuery} onChangeText={text => setSearchQuery(text)} />
+                </Col>
+                <Col md={2}>
+                    <Button mode="outlined" onPress={search} style={{height: '100%'}}>Search</Button>
+                </Col>
+            </Row>
+        </Container>
     );
 }
 

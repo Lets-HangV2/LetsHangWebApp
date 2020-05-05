@@ -6,36 +6,31 @@ import { Avatar, Button, Title } from 'react-native-paper';
 
 const AirlineTag = props =>{
 
-    const searchFlight=()=>{
-        var origin, dest, leaveDate, returnDate, ticketnum;
-    }
-
     return(
-        <Container onClick={searchFlight}>
-            <hr />
+        <Container style={{"fontFamily": "'Work Sans', sans-serif", "marginTop": "25px", "marginBottom": "25px", "fontSize": "20px"}}>
             <Row>
                 <Col md={2}>
                     <Avatar.Icon icon="airplane" />
                 </Col>
-                <Col>
+                <Col md={2}>
                     <Row>
-                        <Title>From: {props.from}</Title>
+                        <Title  style={{"fontFamily": "'Work Sans', sans-serif"}} >From: {props.from}</Title>
                     </Row>
                     <Row>
-                        <Title>To: {props.to}</Title>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row>
-                        <Title>Departure: {props.leave}</Title>
-                    </Row>
-                    <Row>
-                        <Title>Arrival: {props.arrive}</Title>
+                        <Title  style={{"fontFamily": "'Work Sans', sans-serif"}}>To: {props.to}</Title>
                     </Row>
                 </Col>
-                <Col>
+                <Col md={5}>
                     <Row>
-                        <Title>Cost: {props.cost}</Title>
+                        <Title  style={{"fontFamily": "'Work Sans', sans-serif"}}>Departure: {props.leave.slice(0, 10)} {props.leave.slice(11, 16)}</Title>
+                    </Row>
+                    <Row>
+                        <Title  style={{"fontFamily": "'Work Sans', sans-serif"}}>Arrival: {props.arrive.slice(0, 10)} {props.arrive.slice(11, 16)}</Title>
+                    </Row>
+                </Col>
+                <Col md={2}>
+                    <Row>
+                        <Title  style={{"fontFamily": "'Work Sans', sans-serif"}}>Cost: ${props.cost}</Title>
                     </Row>
                 </Col>
             </Row>

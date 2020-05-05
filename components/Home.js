@@ -23,13 +23,15 @@ const Home =()=>{
 
     useEffect(()=>{
         if(username !== null){
-            history.replace('/profile');
+            let url = '/profile/'+username;
+            history.replace(url);
         }
     });
 
     const attemptLogin=()=>{
 
-        //setUsername(tempUsername);
+        setUsername(tempUsername);
+        return;
         
         setUsernameError(false);
         setPasswordError(false);

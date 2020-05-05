@@ -15,18 +15,10 @@ const Profile = (props) =>{
     const [travelPosts, setTravelPost] = useState([]);
 
     useEffect(() =>{
-        renderTravelPosts();
+        getUserData();
     }, []);
 
-    const openFriendsList=()=>{
-        history.push('/friends');
-    }
-
-    const openMessages=()=>{
-        history.push('/messages');
-    }
-
-    const renderTravelPosts=()=>{
+    const getUserData=()=>{
         console.log('rendering tavel posts...');
         let xhr = new XMLHttpRequest();
         let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/home';
@@ -43,13 +35,20 @@ const Profile = (props) =>{
         xhr.onreadystatechange = function(e){
             if(xhr.readyState == 4 && xhr.status == 200){
                 const response = JSON.parse(xhr.responseText);
-                console.log(response);
+                setTravelPost(...travelPosts, response['events']);
             }
         };
-
     }
 
-    if(username !== null){
+    const openFriendsList=()=>{
+        history.push('/friends');
+    }
+
+    const openMessages=()=>{
+        history.push('/messages');
+    }
+
+    if(username === null){
         return(
             <Container>
                 <Row>
@@ -62,12 +61,10 @@ const Profile = (props) =>{
     } else {
         return(
             <Container>
-                <Row>
-                    <CustomAppbar username={username} />
-                </Row>
+                <CustomAppbar username={username} />
                 <Row className="normal-row">
                     <Col>
-                        <Avatar.Image size={128} />
+                        <Avatar.Icon size={128} icon="camera" />
                     </Col>
                 </Row>
                 <Row className="normal-row">
@@ -82,6 +79,7 @@ const Profile = (props) =>{
                     </Col>
                 </Row>
                 <hr className="hr" />
+                {travelPosts.length == 0 && <Row style={{textAlign: 'center'}}><Col><Title>No trips yet :(</Title></Col></Row>}
                 { travelPosts.map(post => (
                     <TravelPost />
                 )) }

@@ -35,8 +35,9 @@ const FriendList = props =>{
     return(
         <Container>
             <Title>{props.username+'\'s Friends'}</Title>
-            {renderFriends}
-            <UserTag />
+            {props.list.map(element => {
+                <UserTag username={element} />
+            })}
         </Container>
     );
 }

@@ -23,7 +23,7 @@ const UserTag = props =>{
                     </Row>
                     <Row>
                         <Col>
-                            <Text>USERNAME</Text>
+                            <Text>{props.username}</Text>
                         </Col>
                     </Row>
                 </Col>

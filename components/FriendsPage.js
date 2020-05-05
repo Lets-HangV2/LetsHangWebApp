@@ -19,8 +19,7 @@ const FriendsPage =()=>{
     const [username, setUsername] = useContext(UserContext);
 
     useEffect(()=>{
-        getUserFriendData();
-        getFriendRequest();
+        getUserData();
     }, []);
 
     const setDisabled=()=>{
@@ -28,7 +27,7 @@ const FriendsPage =()=>{
         setShowRequests(!showRequests);
     }
 
-    const getUserFriendData=()=>{
+    const getUserData=()=>{
         console.log('getting friends');
         let xhr = new XMLHttpRequest();
         let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/home';
@@ -46,7 +45,8 @@ const FriendsPage =()=>{
         function processRequest(){
             if(xhr.readyState == 4 && xhr.status == 200){
                 const response = JSON.parse(xhr.responseText);
-                alert(response);
+                setFriendList(...friendList, response['friends']);
+                setFriendRequestList(...friendRequestList, response['friend_requests']);
             }
         };
 
@@ -81,8 +81,8 @@ const FriendsPage =()=>{
 
     return(
         <>
-            <CustomAppbar username={username} />
             <Container>
+                <CustomAppbar username={username} />
                 <Row>
                     <Col>
                         <Button mode="text" onPress={setDisabled} disabled={showFriends} >Friends</Button>
@@ -93,8 +93,8 @@ const FriendsPage =()=>{
                 </Row>
                 <Row>
                     <Col>
-                        {showFriends && <FriendList username={username} />}
-                        {showRequests && <FriendRequestList username={username} /> } 
+                        {showFriends && <FriendList username={username} list={friendList} />}
+                        {showRequests && <FriendRequestList username={username} list={friendRequestList} /> } 
                     </Col>
                 </Row>
             </Container>

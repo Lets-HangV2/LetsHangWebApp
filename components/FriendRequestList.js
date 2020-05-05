@@ -22,8 +22,9 @@ const FriendRequestList = props =>{
     return(
         <Container>
             <Title>{props.username+'\'s Friend Requests'}</Title>
-            {renderFriendRequests}
-            <UserTag />
+                {props.list.map(element => {
+                    <UserTag username={element} />
+                })}
         </Container>
     );
 }

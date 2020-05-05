@@ -6,26 +6,25 @@ import { Avatar, Title } from 'react-native-paper';
 
 const HotelTag = props =>{
     return(
-        <Container>
-            <hr />
+        <Container style={{"marginTop": "25px", "marginBottom": "25px", "fontSize": "20px"}}>
             <Row>
                 <Col md={2}>
                     <Avatar.Icon icon="hotel" />
                 </Col>
-                <Col>
+                <Col md={6}>
                     <Row>
-                        <Title>Name: {props.name}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Name: {props.name}</Title>
                     </Row>
                     <Row>
-                        <Title>Location: {props.city}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Location: {props.city}</Title>
                     </Row>
                 </Col>
                 <Col>
                     <Row>
-                        <Title>Rating: {props.rating}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "80px"}}>Rating: {props.rating}</Title>
                     </Row>
                     <Row>
-                        <Title>Cost: {props.cost}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "80px"}}>Cost: ${props.cost}</Title>
                     </Row>
                 </Col>
             </Row>

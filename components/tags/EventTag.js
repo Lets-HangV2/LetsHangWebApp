@@ -7,30 +7,29 @@ import { Avatar, Title } from 'react-native-paper';
 const EventTag = props =>{
     return(
         <Container>
-            <hr />
             <Row>
                 <Col md={2}>
                     <Avatar.Icon icon="alpha-e-box" />
                 </Col>
-                <Col>
+                <Col md={4}>
                     <Row>
-                        <Title>Name: {props.name}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Name: {props.name}</Title>
                     </Row>
                     <Row>
-                        <Title>Type: {props.type}</Title>
-                    </Row>
-                </Col>
-                <Col>
-                    <Row>
-                        <Title>Date: {props.date}</Title>
-                    </Row>
-                    <Row>
-                        <Title>Location: {props.location}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Type: {props.type.replace('_', ' ')}</Title>
                     </Row>
                 </Col>
-                <Col>
+                <Col md={3}>
                     <Row>
-                        <Title>Cost: {props.cost}</Title>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Date: {props.date.slice(0, 10)}</Title>
+                    </Row>
+                    <Row>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif"}}>Location: {props.location}</Title>
+                    </Row>
+                </Col>
+                <Col md={2}>
+                    <Row>
+                        <Title style={{"fontFamily": "'Work Sans', sans-serif", "paddingLeft": "12px"}}>Cost: ${props.cost}</Title>
                     </Row>
                 </Col>
             </Row>
