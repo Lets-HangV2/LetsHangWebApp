@@ -43,7 +43,7 @@ const TravelPost = props =>{
 
     const gotoTravelPlanner=()=>{
         console.log('Going to: ', props.tripID);
-        let url = '/travelPlanner/'+props.tripID;
+        let url = '/travelPlanner/'+ props.username + '/' +props.tripID;
         history.push(url);
     }
 

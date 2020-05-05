@@ -24,7 +24,7 @@ class App extends React.Component {
 						<Route path="/profile" component={Profile} />
 						<Route path="/friends" component={FriendsPage} />
 						<Route path="/search" component={Search} />
-						<Route path="/travelPlanner/:tripID" component={TravelPlanner} />
+						<Route path="/travelPlanner/:username/:tripID" component={TravelPlanner} />
 						<Route path="/messages" component={PersonalMessage} />
 						<Route path="/test" exact component={EventTag}/>
 					</Router>

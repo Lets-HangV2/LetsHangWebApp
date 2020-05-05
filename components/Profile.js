@@ -82,7 +82,7 @@ const Profile = (props) =>{
                 <hr className="hr" />
                 { travelPosts.length === 0 && <Row style={{textAlign: 'center'}}><Col><Title>No trips yet :(</Title></Col></Row>}
                 { travelPosts.map(post => (
-                    <TravelPost key={post} tripID={post} />
+                    <TravelPost key={post} tripID={post} username={username}/>
                 )) }
             </Container>
         );

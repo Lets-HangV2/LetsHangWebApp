@@ -10,6 +10,7 @@ import Messager from './components/Messager';
 import AirlineTag from './components/tags/AirlineTag';
 import HotelTag from './components/tags/HotelTag';
 import EventTag from './components/tags/EventTag';
+import { UserContext } from './UserContext';
 
 import { View } from 'react-native';
 import { Button, Checkbox, Paragraph, Portal, Dialog, TextInput, Title, Divider } from 'react-native-paper';
@@ -19,6 +20,7 @@ class TravelPlanner extends React.Component{
     constructor(props){
         super(props);
         this.state = {
+            username: this.props.match.params.username,
             planID: this.props.match.params.tripID,
             tripName: '',
             cost: '',
@@ -46,17 +48,54 @@ class TravelPlanner extends React.Component{
             flyingTo: '',
             potenialHotels: [],
             friends: [],
+            friendList: [],
         };
         this.renderEvents = this.renderEvents.bind(this);
         this.getPlanData = this.getPlanData.bind(this);
         this.getFlights = this.getFlights.bind(this);
+        this.getFriendsList = this.getFriendsList.bind(this);
     }
 
     componentDidMount(){
         //this.setState({planID: this.props.match.params.tripID});
         this.getPlanData();
+        this.getFriendsList();
+    }
+
+    getFriendsList(){
+
+        var that = this;
+        let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/home';
+        let xhr = new XMLHttpRequest();
+        
+        var data = JSON.stringify({
+            'username': this.state.username
+        });
+        console.log(data);
+
+        xhr.open('POST', url);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(data);
+        xhr.onreadystatechange = processRequest;
+        function processRequest(e){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var response = JSON.parse(xhr.responseText);
+                var friends = response['user_info']['friends']
+
+                for(var i = 0; i < friends.length; i++){
+                    if(that.state.friends.includes(friends[i])){
+                        friends.splice(i, 1);
+                    }
+                }
+
+                that.setState({friendList: friends});
+                console.log(that.state.friendList)
+            }
+        };
     }
    
+    _showInvites = () => this.setState({inviteVisible: true});
+    _hideInvites = () => this.setState({inviteVisible: false});
     _showFlightDialog = () => this.setState({ flightVisible: true });
     _hideFlightDialog = () => this.setState({ flightVisible: false });
     _showHotelDialog = () => this.setState({ hotelVisible: true });
@@ -346,6 +385,10 @@ class TravelPlanner extends React.Component{
                 console.log(that.state.potenialHotels);
             }
         };
+    }
+
+    addFriendToPlan = () => {
+
     }
     
     render(){
@@ -668,13 +711,45 @@ class TravelPlanner extends React.Component{
                                 <h1>Friends</h1>                
                             </Col>   
                             <Col md={5}>
-                                <Button style={{"marginTop": "10px"}} icon="" mode="contained" onPress={this._findEvents}>
+                                <Button style={{"marginTop": "10px"}} icon="" mode="contained" onPress={this._showInvites}>
                                     Invite
                                 </Button>
+                                <Portal>
+                                    <Dialog visible={this.state.inviteVisible} onDismiss={this._hideInvites}>
+                                        <Dialog.Content>
+                                        <Row>
+                                            <Col md={12}>
+                                                <h1>Invite Friends</h1>
+                                            </Col>
+                                            {
+                                                this.state.friendList.map(function(friend){
+                                                    return(
+                                                        <>
+                                                        <Col md={4}>
+                                                        </Col>
+                                                        <Col md={2}>
+                                                            <Button style={{"fontSize": "40px;", "width": "30px"}} icon="plus"> 
+                                                            </Button>
+                                                        </Col>
+                                                        <Col md={6}>
+                                                            <Title>{friend}</Title>
+                                                        </Col>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+                                        </Row>
+                                        </Dialog.Content>
+                                        <Dialog.Actions>
+                                        <Button onPress={this._hideInvites}>Done</Button>
+                                        </Dialog.Actions>
+                                    </Dialog>
+                                </Portal>
                             </Col>
                         </Row>
                         <Row>
                             <Col md={12}>
+        
                                 {
                                     this.state.friends.map(function(friend, index){
                                         return <h5 style={{"marginLeft": "35px"}} key={ index }> • {(friend).toUpperCase()}</h5>;
