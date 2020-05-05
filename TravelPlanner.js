@@ -19,7 +19,6 @@ class TravelPlanner extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            oldplanID: 'f977b1bb-9c4a-4b44-9f52-f205735b37c1',
             planID: this.props.match.params.tripID,
             tripName: '',
             cost: '',

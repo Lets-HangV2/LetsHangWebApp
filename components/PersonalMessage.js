@@ -1,17 +1,17 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
-import { TextInput, Button } from 'react-native-paper';
 import Col from 'react-bootstrap/Col';
+import { Title, Divider, TextInput, Button } from 'react-native-paper';
 import CustomAppbar from './CustomAppbar';
 import { UserContext } from '../UserContext';
 import UserTag from './tags/UserTag';
 
-const Search =()=>{
+const PersonalMessage = props =>{
 
+    const [username, setUsername] = useContext(UserContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [users, setUsers] = useState([]);
-    const [username, setUsername] = useContext(UserContext);
 
     const search=()=>{
         let xhr = new XMLHttpRequest();
@@ -37,6 +37,12 @@ const Search =()=>{
     return(
         <Container>
             <CustomAppbar username={username} />
+            <Row>
+                <Col style={{textAlign: 'center'}}>
+                    <Title>Messages</Title>
+                </Col>
+            </Row>
+            <Divider />
             <Row style={{paddingTop: '24px'}}>
                 <Col md={10}>
                     <TextInput placeholder="Search for a user" value={searchQuery} onChangeText={text => setSearchQuery(text)} />
@@ -47,11 +53,11 @@ const Search =()=>{
             </Row>
             {
                 users.map(user => (
-                    <UserTag username={user} key={user} buttonLabel={"Add Friend"} />
+                    <Row><UserTag username={user} key={user} buttonLabel={"Send Message"} /></Row>
                 ))
             }
         </Container>
     );
 }
 
-export default Search;
+export default PersonalMessage;

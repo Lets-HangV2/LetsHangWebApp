@@ -10,7 +10,7 @@ const FriendList = props =>{
     const renderFriends=()=>{
         console.log('Rendering Friends...');
         let xhr = new XMLHttpRequest();
-        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/home';
+        let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/home';
 
         xhr.open('POST', url);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -33,10 +33,10 @@ const FriendList = props =>{
     }
 
     return(
-        <Container>
+        <Container style={{textAlign: 'center'}}>
             <Title>{props.username+'\'s Friends'}</Title>
             {props.list.map(element => {
-                <UserTag username={element} />
+                <UserTag key={element} username={element} buttonLabel={"Remove Friend"} />
             })}
         </Container>
     );

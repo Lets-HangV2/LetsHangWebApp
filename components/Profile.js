@@ -17,8 +17,7 @@ const Profile = (props) =>{
 
     useEffect(() =>{
         getUserData();
-        setIsUpdated(false);
-    }, isUpdated);
+    }, []);
 
     const getUserData=()=>{
         console.log('rendering tavel posts...');

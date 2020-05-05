@@ -43,7 +43,7 @@ const CustomAppbar = props =>{
         <>
             <Appbar>
                 <Appbar.Content title="Let's Hang" subtitle={props.username} onPress={gotoProfile}/>
-                {/*<Appbar.Action icon="magnify" onPress={search} />*/}
+                <Appbar.Action icon="magnify" onPress={search} />
                 {/*<Appbar.Action icon="bell" onPress={gotoNotifications} />*/}
                 <Appbar.Action icon="briefcase-plus" onPress={showPostScreen} />
                 <Appbar.Action icon="dots-vertical" onPress={showSettings} />

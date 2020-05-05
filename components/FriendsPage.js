@@ -45,8 +45,8 @@ const FriendsPage =()=>{
         function processRequest(){
             if(xhr.readyState == 4 && xhr.status == 200){
                 const response = JSON.parse(xhr.responseText);
-                setFriendList(...friendList, response['friends']);
-                setFriendRequestList(...friendRequestList, response['friend_requests']);
+                setFriendList(...friendList, response['user_info']['friends']);
+                setFriendRequestList(...friendRequestList, response['user_info']['friend_requests']);
             }
         };
 

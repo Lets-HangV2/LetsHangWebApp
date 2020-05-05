@@ -20,10 +20,10 @@ const FriendRequestList = props =>{
     }
 
     return(
-        <Container>
+        <Container style={{textAlign: 'center'}}>
             <Title>{props.username+'\'s Friend Requests'}</Title>
                 {props.list.map(element => {
-                    <UserTag username={element} />
+                    <UserTag key={element} username={element} buttonLabel={"Accept Friend"} isPending={true} />
                 })}
         </Container>
     );
