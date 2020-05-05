@@ -29,9 +29,6 @@ const Home =()=>{
     });
 
     const attemptLogin=()=>{
-
-        setUsername(tempUsername);
-        return;
         
         setUsernameError(false);
         setPasswordError(false);

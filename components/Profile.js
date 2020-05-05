@@ -35,7 +35,7 @@ const Profile = (props) =>{
         xhr.onreadystatechange = function(e){
             if(xhr.readyState == 4 && xhr.status == 200){
                 const response = JSON.parse(xhr.responseText);
-                setTravelPost(...travelPosts, response['events']);
+                setTravelPost(...travelPosts, response['user_info']['events']);
             }
         };
     }
@@ -81,7 +81,7 @@ const Profile = (props) =>{
                 <hr className="hr" />
                 {travelPosts.length == 0 && <Row style={{textAlign: 'center'}}><Col><Title>No trips yet :(</Title></Col></Row>}
                 { travelPosts.map(post => (
-                    <TravelPost />
+                    <TravelPost key={post} id={post}/>
                 )) }
             </Container>
         );

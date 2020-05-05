@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet} from "react-native";
 import { Provider as PaperProvider } from 'react-native-paper';
-import Register from './Register.js';
+import Register from './components/Register';
 import TravelPlanner from './TravelPlanner.js';
 import CustomAppbar from './CustomAppbar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';

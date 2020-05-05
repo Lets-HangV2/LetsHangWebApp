@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import './../styles.css';
 import { Title, Text, TextInput, Button } from 'react-native-paper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -66,7 +66,7 @@ const Register=()=>{
         
         //ping file that handles registration
         let xhr = new XMLHttpRequest();
-        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/register1';
+        let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/register1';
 
         xhr.open('POST', url);
         console.log('OPENING: ', xhr.status);
@@ -98,7 +98,7 @@ const Register=()=>{
             if(xhr.readyState == 4 && xhr.status == 200){
                 var response = JSON.parse(xhr.responseText);
                 if(response['status'].localeCompare('Sucessful') == 0){
-                    history.replace('/');
+                    console.log(response);
                 } else {
                     console.log('ERROR RESPONSE: ', response['status']);
                 }
