@@ -19,8 +19,9 @@ class TravelPlanner extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            planID: 'f977b1bb-9c4a-4b44-9f52-f205735b37c1',
-            tripName: 'London 22nd Birthday',
+            oldplanID: 'f977b1bb-9c4a-4b44-9f52-f205735b37c1',
+            planID: this.props.match.params.tripID,
+            tripName: '',
             cost: '',
             flights: [],
             hotels: [],
@@ -51,7 +52,9 @@ class TravelPlanner extends React.Component{
         this.getPlanData = this.getPlanData.bind(this);
         this.getFlights = this.getFlights.bind(this);
     }
+
     componentDidMount(){
+        //this.setState({planID: this.props.match.params.tripID});
         this.getPlanData();
     }
    
@@ -69,6 +72,7 @@ class TravelPlanner extends React.Component{
         var that = this;
         let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/getPlanDetails';
         let xhr = new XMLHttpRequest();
+        console.log(this.state.planID);
         var data = JSON.stringify({
             'planID': this.state.planID
         });
@@ -83,8 +87,9 @@ class TravelPlanner extends React.Component{
                 that.setState({events: response[0]['events']});
                 that.setState({hotels: response[0]['hotel']});
                 that.setState({flights: response[0]['airfare']});
-                that.setState({cost: response[0]['cost']})
-                that.setState({friends: response[0]['friends']})
+                that.setState({cost: response[0]['cost']});
+                that.setState({friends: response[0]['friends']});
+                that.setState({tripName: response[0]['planName']});
             }
         };
 

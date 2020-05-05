@@ -7,7 +7,9 @@ const TravelPost = props =>{
     let history = useHistory();
 
     const gotoTravelPlanner=()=>{
-        history.push('/travelPlanner');
+        console.log('Going to: ', props.tripID);
+        let url = '/travelPlanner/'+props.tripID;
+        history.push(url);
     }
 
     const confirm=()=>{

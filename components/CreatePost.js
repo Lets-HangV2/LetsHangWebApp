@@ -23,8 +23,8 @@ const CreatePost = props =>{
         let data = JSON.stringify({
             'username': props.username,
             'name': title,
-            'startingDate': startDate,
-            'endingDate': endDate
+            'startDate': startDate,
+            'endDate': endDate
         });
 
         console.log('Sending data...');
@@ -35,9 +35,9 @@ const CreatePost = props =>{
                 const response = JSON.parse(xhr.responseText);
                 console.log(response.message);
                 nestedProps.hideDialog;
+                props.checkUpdate;
             }
-        };
-
+        };        
 
     }
 

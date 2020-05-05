@@ -13,10 +13,12 @@ const Profile = (props) =>{
     let history = useHistory();
     const [username, setUsername] = useContext(UserContext);
     const [travelPosts, setTravelPost] = useState([]);
+    const [isUpdated, setIsUpdated] = useState(false);
 
     useEffect(() =>{
         getUserData();
-    }, []);
+        setIsUpdated(false);
+    }, isUpdated);
 
     const getUserData=()=>{
         console.log('rendering tavel posts...');
@@ -35,7 +37,7 @@ const Profile = (props) =>{
         xhr.onreadystatechange = function(e){
             if(xhr.readyState == 4 && xhr.status == 200){
                 const response = JSON.parse(xhr.responseText);
-                setTravelPost(...travelPosts, response['events']);
+                setTravelPost(...travelPosts, response['user_info']['events']);
             }
         };
     }
@@ -61,7 +63,7 @@ const Profile = (props) =>{
     } else {
         return(
             <Container>
-                <CustomAppbar username={username} />
+                <CustomAppbar username={username} checkUpdate={() => {setIsUpdated(true)}} />
                 <Row className="normal-row">
                     <Col>
                         <Avatar.Icon size={128} icon="camera" />
@@ -79,9 +81,9 @@ const Profile = (props) =>{
                     </Col>
                 </Row>
                 <hr className="hr" />
-                {travelPosts.length == 0 && <Row style={{textAlign: 'center'}}><Col><Title>No trips yet :(</Title></Col></Row>}
+                { travelPosts.length === 0 && <Row style={{textAlign: 'center'}}><Col><Title>No trips yet :(</Title></Col></Row>}
                 { travelPosts.map(post => (
-                    <TravelPost />
+                    <TravelPost key={post} tripID={post} />
                 )) }
             </Container>
         );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import '../styles.css';
 import { Title, Text, TextInput, Button } from 'react-native-paper';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
@@ -8,6 +8,9 @@ import Col from 'react-bootstrap/Col';
 import { Link, useHistory } from 'react-router-dom';
 
 const Register=()=>{
+
+
+    let history = useHistory();
 
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
@@ -26,7 +29,6 @@ const Register=()=>{
 
 
     const register=()=>{
-        let history = useHistory();
 
         setFirstnameError(false);
         setLastnameError(false);
@@ -66,10 +68,9 @@ const Register=()=>{
         
         //ping file that handles registration
         let xhr = new XMLHttpRequest();
-        let url = 'https://o3hobmlb9b.execute-api.us-east-1.amazonaws.com/dev/register1';
+        let url = 'https://ixu02acve2.execute-api.us-east-1.amazonaws.com/dev/register1';
 
         xhr.open('POST', url);
-        console.log('OPENING: ', xhr.status);
 
         xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -77,20 +78,12 @@ const Register=()=>{
             'username': username,
             'password': password,
             'email': email,
-            'first_name': firstName,
-            'last_name': lastName
+            'first_name': firstname,
+            'last_name': lastname
         });
         
         console.log('Sending data');
         xhr.send(data);
-
-        xhr.onprogress = function(){
-            console.log('LOADING: ', xhr.status);
-        };
-
-        xhr.onload = function(){
-            console.log('DONE: ', xhr.status);
-        };
 
         xhr.onreadystatechange = processRequest;
 

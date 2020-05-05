@@ -1,24 +1,16 @@
 import React from "react";
 import { StyleSheet} from "react-native";
 import { Provider as PaperProvider } from 'react-native-paper';
-import Register from './Register.js';
 import TravelPlanner from './TravelPlanner.js';
-import CustomAppbar from './CustomAppbar';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-//import Search from './Search.js';
 import PersonalMessage from './PersonalMessage.js';
 import { UserProvider } from './UserContext';
 
 import Home from './components/Home';
 import Profile from './components/Profile';
 import FriendsPage from './components/FriendsPage';
-//import TravelPlanner from './components/TravelPlanner';
 import Search from './components/Search';
-import Messager from './components/Messager';
-
-
-import UserTag from './UserTag.js';
-import AirlineTag from './components/tags/AirlineTag.js';
+import Register from './components/Register';
 import EventTag from './components/tags/EventTag';
 
 class App extends React.Component {
@@ -33,12 +25,8 @@ class App extends React.Component {
 						<Route path="/profile" component={Profile} />
 						<Route path="/friends" component={FriendsPage} />
 						<Route path="/search" component={Search} />
-						<Route path="/travelPlanner" component={TravelPlanner}>
-						</Route>
-						<Route path="/DirectMessages">
-							<CustomAppbar username="USERNAME" />
-							<PersonalMessage />
-						</Route>
+						<Route path="/travelPlanner/:tripID" component={TravelPlanner} />
+						<Route path="/DirectMessages" component={PersonalMessage} />
 						<Route path="/test" exact component={EventTag}/>
 					</Router>
 				</UserProvider>

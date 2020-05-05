@@ -50,8 +50,8 @@ const CustomAppbar = props =>{
             </Appbar>
 
             <Portal>
-                <CreatePost isBeingDisplayed={isVisible && showPostScreen} hideDialog={hidePostScreen} username={props.username} />
-                <LogoutDialog isBeingDisplayed={settingsVisible && showSettings} hideDialog={hideSettings} username={props.username} logout={handleLogout}/>
+                <CreatePost isBeingDisplayed={isVisible && showPostScreen} hideDialog={hidePostScreen} username={props.username} checkUpdate={props.checkUpdate} />
+                <LogoutDialog isBeingDisplayed={settingsVisible && showSettings} hideDialog={hideSettings} username={props.username} logout={handleLogout} />
             </Portal>
             
         </>
