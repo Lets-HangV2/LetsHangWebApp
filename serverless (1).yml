@@ -1,0 +1,63 @@
+plugins:
+  - serverless-python-requirements
+service: letshang
+
+provider:
+  name: aws
+  runtime: python3.7
+
+functions:
+  send_friend_request:
+    handler: handler.send_friend_request
+    events:
+      - http:
+          path: send_friend_request
+          method: post
+  accept_friend_request:
+    handler: handler.accept_friend_request
+    events:
+      - http:
+          path: accept_friend_request
+          method: post
+  get_friend_requests:
+    handler: handler.get_friend_requests
+    events:
+      - http:
+          path: get_friend_requests
+          method: post
+  get_hotel_city:
+    handler: handler.get_hotel_city
+    events:
+      - http:
+          path: get_hotel_city
+          method: post
+  get_hotels:
+    handler: handler.get_hotels
+    events:
+      - http:
+          path: get_hotels
+          method: post
+  get_hotel_offers:
+    handler: handler.get_hotel_offers
+    events:
+      - http:
+          path: get_hotel_offers
+          method: post
+  user_serch:
+    handler: handler.user_serch
+    events:
+      - http:
+          path: user_serch
+          method: post
+  send_message:
+    handler: handler.send_message
+    events:
+      - http:
+          path: send_message
+          method: post
+  get_messages:
+    handler: handler.get_messages
+    events:
+      - http:
+          path: get_messages
+          method: post
